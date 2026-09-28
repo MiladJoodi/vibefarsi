@@ -1,0 +1,131 @@
+"use client";
+
+import * as React from "react";
+import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { EnterDashboardOverlay } from "@/components/templates/enter-dashboard";
+import { AuroraBackground } from "@/components/backgrounds/aurora";
+import { GrainBackground } from "@/components/backgrounds/grain";
+import { Avatar } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Field, Input } from "@/components/ui/input";
+import { OtpField } from "@/components/ui/otp-field";
+import { Stepper } from "@/components/ui/stepper";
+import { fa } from "@/lib/utils";
+
+/** ورود با موبایل و کد تأیید: دو مرحله در یک کارت. */
+export function AuthPage() {
+  const router = useRouter();
+  const [step, setStep] = React.useState(0);
+  const [phone, setPhone] = React.useState("");
+  const [left, setLeft] = React.useState(90);
+  const [entering, setEntering] = React.useState(false);
+
+  function enterDashboard() {
+    if (entering) return;
+    setEntering(true);
+  }
+
+  const goDashboard = React.useCallback(() => {
+    router.push("/dashboard");
+  }, [router]);
+
+  React.useEffect(() => {
+    if (step !== 1 || left <= 0) return;
+    const id = window.setTimeout(() => setLeft((s) => s - 1), 1000);
+    return () => window.clearTimeout(id);
+  }, [step, left]);
+
+  return (
+    <div className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-background p-4 text-foreground">
+      <EnterDashboardOverlay open={entering} onReady={goDashboard} />
+      <AuroraBackground />
+      <GrainBackground opacity={0.45} className="opacity-80" />
+      <div className="relative w-full max-w-sm rounded-surface border-line border-border bg-card/90 p-6 shadow-overlay backdrop-blur-sm [--tw-border-style:var(--line-style)]">
+        <div className="mb-6 text-center">
+          <Avatar name="وایب‌فارسی" size="lg" className="mx-auto mb-3" />
+          <h1 className="font-display text-lg font-bold">{step === 0 ? "ورود یا ثبت‌نام" : "کد تأیید را وارد کنید"}</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {step === 0
+              ? "شماره‌ی موبایل‌تان را وارد کنید تا کد تأیید بفرستیم."
+              : `کد ۶ رقمی به ${fa(phone || "۰۹۱۲۳۴۵۶۷۸۹")} پیامک شد.`}
+          </p>
+        </div>
+
+        <Stepper
+          current={step}
+          steps={[{ label: "شماره" }, { label: "کد تأیید" }, { label: "ورود" }]}
+          className="mb-6"
+        />
+
+        {step === 0 ? (
+          <form
+            className="space-y-4"
+            onSubmit={(e) => {
+              e.preventDefault();
+              setStep(1);
+              setLeft(90);
+            }}
+          >
+            <Field label="شماره‌ی موبایل" htmlFor="phone">
+              <Input
+                id="phone"
+                dir="ltr"
+                inputMode="tel"
+                autoComplete="tel"
+                startAddon="+98"
+                placeholder="912 345 6789"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
+              />
+            </Field>
+            <Button type="submit" className="w-full">
+              دریافت کد
+            </Button>
+            <Button type="button" variant="outline" className="w-full" disabled={entering} onClick={enterDashboard}>
+              ورود تستی
+            </Button>
+            <p className="text-center text-xs text-muted-foreground">
+              با ورود،{" "}
+              <a href="#" className="underline underline-offset-4">
+                قوانین استفاده
+              </a>{" "}
+              را می‌پذیرید.
+            </p>
+          </form>
+        ) : (
+          <div className="space-y-5">
+            <div className="flex justify-center">
+              <OtpField onComplete={enterDashboard} />
+            </div>
+            <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <button
+                type="button"
+                onClick={() => setStep(0)}
+                className="inline-flex cursor-pointer items-center gap-1 hover:text-foreground"
+              >
+                <ArrowRight className="size-3.5" />
+                تغییر شماره
+              </button>
+              {left > 0 ? (
+                <span>ارسال دوباره تا {fa(left)} ثانیه دیگر</span>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setLeft(90)}
+                  className="cursor-pointer font-medium text-foreground"
+                >
+                  ارسال دوباره‌ی کد
+                </button>
+              )}
+            </div>
+            <Button className="w-full" disabled={entering} onClick={enterDashboard}>
+              ورود
+            </Button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,329 @@
+@import "tailwindcss";
+
+/* کاغذ، مجله‌ای. تیترها با Noto Naskh Arabic هستن. */
+:root {
+  color-scheme: light;
+
+  /* رنگ */
+  --background: oklch(0.985 0.004 85);
+  --foreground: oklch(0.2 0.01 60);
+  --card: oklch(0.985 0.004 85);
+  --card-foreground: oklch(0.2 0.01 60);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.01 60);
+  --primary: oklch(0.2 0.01 60);
+  --primary-foreground: oklch(0.985 0.004 85);
+  --secondary: oklch(0.94 0.008 85);
+  --secondary-foreground: oklch(0.2 0.01 60);
+  --muted: oklch(0.955 0.006 85);
+  --muted-foreground: oklch(0.47 0.015 60);
+  --accent: oklch(0.94 0.008 85);
+  --accent-foreground: oklch(0.2 0.01 60);
+  --destructive: oklch(0.55 0.2 25);
+  --success: oklch(0.52 0.13 160);
+  --warning: oklch(0.62 0.14 70);
+  --border: oklch(0.2 0.01 60 / 14%);
+  --input: oklch(0.2 0.01 60 / 30%);
+  --ring: oklch(0.5 0.02 60);
+  --brand: oklch(0.55 0.19 30);
+  --brand-foreground: oklch(0.985 0 0);
+
+  /* زبان طراحی: فونت، فرم، خط، عمق، حرکت و تراکم */
+  --radius: 0.25rem;
+  --type-display: var(--font-naskh), "Noto Naskh Arabic", "Vazirmatn", serif;
+  --type-display-weight: 700;
+  --shape-control: 0.125rem;
+  --shape-field: 0rem;
+  --shape-surface: 0.125rem;
+  --shape-overlay: 0.25rem;
+  --line: 1px;
+  --line-field: 0 0 1px 0;
+  --line-style: solid;
+  --field: transparent;
+  --depth-control: 0 0 #0000;
+  --depth-press: 0 0 #0000;
+  --depth-field: 0 0 #0000;
+  --depth-surface: 0 0 #0000;
+  --depth-overlay: 0 12px 32px -16px oklch(0.2 0.01 60 / 25%);
+  --surface-filter: none;
+  --press: translateY(1px);
+  --motion: 160ms;
+  --motion-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --backdrop: none;
+  --spacing: 0.26rem;
+}
+
+/* تم تیره — همان زبان کاغذ، با رنگ‌های مرکب روی شب */
+.dark {
+  color-scheme: dark;
+
+  --background: oklch(0.17 0.008 60);
+  --foreground: oklch(0.96 0.004 85);
+  --card: oklch(0.2 0.008 60);
+  --card-foreground: oklch(0.96 0.004 85);
+  --popover: oklch(0.22 0.008 60);
+  --popover-foreground: oklch(0.96 0.004 85);
+  --primary: oklch(0.96 0.004 85);
+  --primary-foreground: oklch(0.18 0.01 60);
+  --secondary: oklch(0.26 0.01 60);
+  --secondary-foreground: oklch(0.96 0.004 85);
+  --muted: oklch(0.23 0.008 60);
+  --muted-foreground: oklch(0.7 0.015 60);
+  --accent: oklch(0.26 0.01 60);
+  --accent-foreground: oklch(0.96 0.004 85);
+  --destructive: oklch(0.65 0.18 25);
+  --success: oklch(0.7 0.14 160);
+  --warning: oklch(0.75 0.14 75);
+  --border: oklch(0.96 0.004 85 / 12%);
+  --input: oklch(0.96 0.004 85 / 18%);
+  --ring: oklch(0.7 0.02 60);
+  --brand: oklch(0.7 0.16 35);
+  --brand-foreground: oklch(0.18 0.02 40);
+  --depth-overlay: 0 16px 40px -18px oklch(0 0 0 / 55%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Design language: type, shape, line, depth and motion of the active system. */
+  --radius-control: var(--shape-control);
+  --radius-field: var(--shape-field);
+  --radius-surface: var(--shape-surface);
+  --radius-overlay: var(--shape-overlay);
+  --border-width-line: var(--line);
+  --border-width-line-field: var(--line-field);
+  --color-field: var(--field);
+  --shadow-control: var(--depth-control);
+  --shadow-press: var(--depth-press);
+  --shadow-field: var(--depth-field);
+  --shadow-surface: var(--depth-surface);
+  --shadow-overlay: var(--depth-overlay);
+  --ease-motion: var(--motion-ease);
+  --font-display: var(--type-display);
+  --font-sans: var(--font-vazirmatn), "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
+  --animate-pulse-soft: pulse-soft 1.6s ease-in-out infinite;
+  --animate-shine: shine 1.4s ease-in-out infinite;
+  --animate-fade-up: fade-up 150ms ease-out both;
+  --animate-gradient-pan: gradient-pan 6s linear infinite;
+  --animate-enter-in: enter-in 480ms var(--motion-ease) both;
+  --animate-slide-in: slide-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@property --beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 150% 50%;
+  }
+}
+
+@keyframes enter-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes beam {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+@keyframes drawer-in {
+  from {
+    opacity: 0.6;
+    transform: translateX(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes aurora {
+  from {
+    transform: translate3d(-4%, -2%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(6%, 4%, 0) scale(1.08);
+  }
+}
+
+@keyframes digit-pop {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(calc(var(--pop-y, 1) * 0.55em)) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes badge-slide {
+  from {
+    opacity: 0;
+    transform: translate(var(--bx, 8px), 8px) scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes bell-ring {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(12deg);
+  }
+  30% {
+    transform: rotate(-10deg);
+  }
+  45% {
+    transform: rotate(8deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-soft,
+  .animate-shine,
+  .animate-fade-up,
+  .animate-gradient-pan,
+  .animate-enter-in,
+  .animate-slide-in {
+    animation: none !important;
+  }
+}
+
+@layer base {
+  /* همیشه جا برای اسکرول‌بار نگه دار تا با تعویض صفحه پرش نکند */
+  html {
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    font-size: 16.5px;
+    line-height: 1.8;
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-family: var(--type-body, inherit);
+    background-image: var(--backdrop, none);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--type-display, inherit);
+    font-weight: var(--type-display-weight, 700);
+    /* Single-weight display faces (Lalezar) must not be faux-bolded. */
+    font-synthesis-weight: none;
+  }
+
+  /* iOS Safari zooms into any focused field smaller than 16px; only iOS matches this query. */
+  @supports (-webkit-touch-callout: none) {
+    input,
+    textarea,
+    select {
+      --text-xs: 1rem;
+      --text-sm: 1rem;
+      font-size: max(1rem, 1em);
+    }
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
