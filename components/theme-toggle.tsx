@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Moon, Sun } from "lucide-react";
+import { Github, Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Theme = "light" | "dark";
@@ -14,6 +14,7 @@ type ThemeCtx = {
 
 const ThemeContext = React.createContext<ThemeCtx | null>(null);
 export const THEME_STORAGE_KEY = "vf-theme";
+export const GITHUB_REPO_URL = "https://github.com/MiladJoodi/vibefarsi";
 
 function readTheme(): Theme {
   try {
@@ -65,6 +66,9 @@ export function useTheme() {
   return ctx;
 }
 
+const iconBtn =
+  "relative flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-control text-muted-foreground transition-colors duration-(--motion) ease-motion hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60";
+
 /** دکمه‌ی خورشید / ماه برای جابه‌جایی تم روشن و تیره. */
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, toggle } = useTheme();
@@ -76,12 +80,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       onClick={toggle}
       aria-label={dark ? "حالت روشن" : "حالت تیره"}
       title={dark ? "حالت روشن" : "حالت تیره"}
-      className={cn(
-        "relative flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-control text-muted-foreground transition-colors duration-(--motion) ease-motion",
-        "hover:bg-accent hover:text-foreground",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60",
-        className,
-      )}
+      className={cn(iconBtn, className)}
     >
       <Sun
         className={cn(
@@ -96,5 +95,31 @@ export function ThemeToggle({ className }: { className?: string }) {
         )}
       />
     </button>
+  );
+}
+
+/** لینک مخزن گیت‌هاب پروژه. */
+export function GithubLink({ className }: { className?: string }) {
+  return (
+    <a
+      href={GITHUB_REPO_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="مخزن گیت‌هاب"
+      title="گیت‌هاب"
+      className={cn(iconBtn, className)}
+    >
+      <Github className="size-4 stroke-[1.75]" />
+    </a>
+  );
+}
+
+/** گروه تم + گیت‌هاب برای هدر سایدبار. */
+export function HeaderTools({ className }: { className?: string }) {
+  return (
+    <div className={cn("flex items-center gap-0.5", className)}>
+      <GithubLink />
+      <ThemeToggle />
+    </div>
   );
 }

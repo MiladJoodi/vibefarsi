@@ -20,7 +20,7 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import { ENTER_DASHBOARD_FLAG } from "@/components/templates/enter-dashboard";
 import { NotificationBadge } from "@/components/animations/notification-badge";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { HeaderTools } from "@/components/theme-toggle";
 import { ProfileAvatar } from "@/components/ui/profile-avatar";
 import { Sidebar, SidebarGroup, SidebarItem } from "@/components/ui/sidebar";
 import { Avatar } from "@/components/ui/avatar";
@@ -184,7 +184,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const header = (
     <div className="flex w-full items-center justify-between gap-2">
       <BrandMark />
-      <ThemeToggle />
+      <HeaderTools />
     </div>
   );
 
@@ -242,7 +242,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               <div className="flex w-full items-center justify-between gap-2">
                 <BrandMark />
                 <div className="flex items-center gap-0.5">
-                  <ThemeToggle />
+                  <HeaderTools />
                   <button
                     type="button"
                     aria-label="بستن"
@@ -273,7 +273,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </button>
           <BrandMark compact />
           <div className="ms-auto">
-            <ThemeToggle />
+            <HeaderTools />
           </div>
         </header>
 
