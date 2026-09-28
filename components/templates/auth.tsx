@@ -27,7 +27,7 @@ export function AuthPage() {
   }
 
   const goDashboard = React.useCallback(() => {
-    router.push("/dashboard");
+    router.push("/");
   }, [router]);
 
   React.useEffect(() => {

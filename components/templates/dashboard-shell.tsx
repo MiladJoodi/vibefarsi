@@ -334,7 +334,7 @@ export function DashboardShell() {
               <p className="text-xs text-muted-foreground">{fa(orders.length)} سفارش آخر</p>
             </div>
             <a
-              href="/dashboard/orders"
+              href="/orders"
               className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               مشاهده‌ی همه

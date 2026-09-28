@@ -47,30 +47,30 @@ function NavBody({
         <SidebarItem
           icon={LayoutDashboard}
           label="نمای کلی"
-          href="/dashboard"
-          active={pathname === "/dashboard"}
+          href="/"
+          active={pathname === "/"}
           onClick={click}
         />
         <SidebarItem
           icon={ShoppingCart}
           label="سفارش‌ها"
-          href="/dashboard/orders"
+          href="/orders"
           badge={12}
-          active={pathname.startsWith("/dashboard/orders")}
+          active={pathname.startsWith("/orders")}
           onClick={click}
         />
         <SidebarItem
           icon={Package}
           label="محصولات"
-          href="/dashboard/products"
-          active={pathname.startsWith("/dashboard/products")}
+          href="/products"
+          active={pathname.startsWith("/products")}
           onClick={click}
         />
         <SidebarItem
           icon={Users}
           label="مشتری‌ها"
-          href="/dashboard/customers"
-          active={pathname.startsWith("/dashboard/customers")}
+          href="/customers"
+          active={pathname.startsWith("/customers")}
           onClick={click}
         />
       </SidebarGroup>
@@ -78,22 +78,22 @@ function NavBody({
         <SidebarItem
           icon={Wallet}
           label="کیف پول"
-          href="/dashboard/wallet"
-          active={pathname.startsWith("/dashboard/wallet")}
+          href="/wallet"
+          active={pathname.startsWith("/wallet")}
           onClick={click}
         />
         <SidebarItem
           icon={FileText}
           label="فاکتور"
-          href="/dashboard/invoices"
-          active={pathname.startsWith("/dashboard/invoices")}
+          href="/invoices"
+          active={pathname.startsWith("/invoices")}
           onClick={click}
         />
         <SidebarItem
           icon={CalendarDays}
           label="رزرو نوبت"
-          href="/dashboard/booking"
-          active={pathname.startsWith("/dashboard/booking")}
+          href="/booking"
+          active={pathname.startsWith("/booking")}
           onClick={click}
         />
       </SidebarGroup>
@@ -101,9 +101,9 @@ function NavBody({
         <SidebarItem
           icon={MessageSquare}
           label="پشتیبانی"
-          href="/dashboard/support"
+          href="/support"
           badge={2}
-          active={pathname.startsWith("/dashboard/support")}
+          active={pathname.startsWith("/support")}
           onClick={click}
         />
         <SidebarItem
@@ -113,22 +113,22 @@ function NavBody({
             </NotificationBadge>
           )}
           label="اعلان‌ها"
-          href="/dashboard/notifications"
-          active={pathname.startsWith("/dashboard/notifications")}
+          href="/notifications"
+          active={pathname.startsWith("/notifications")}
           onClick={click}
         />
         <SidebarItem
           icon={HelpCircle}
           label="راهنما"
-          href="/dashboard/help"
-          active={pathname.startsWith("/dashboard/help")}
+          href="/help"
+          active={pathname.startsWith("/help")}
           onClick={click}
         />
         <SidebarItem
           icon={Settings}
           label="تنظیمات فروشگاه"
-          href="/dashboard/settings"
-          active={pathname.startsWith("/dashboard/settings")}
+          href="/settings"
+          active={pathname.startsWith("/settings")}
           onClick={click}
         />
       </SidebarGroup>

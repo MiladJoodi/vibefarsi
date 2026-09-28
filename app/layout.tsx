@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description: "پنل نمونه فروشگاه فارسی با کامپوننت‌های وایب‌فارسی",
 };
 
-const themeBoot = `(function(){try{var k='vf-theme';var t=localStorage.getItem(k);var d=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);var r=document.documentElement;r.classList.toggle('dark',d);r.style.colorScheme=d?'dark':'light';}catch(e){}})();`;
+const themeBoot = `(function(){try{var k='vf-theme';var t=localStorage.getItem(k);var d=t==='dark';var r=document.documentElement;r.classList.toggle('dark',d);r.style.colorScheme=d?'dark':'light';}catch(e){}})();`;
 
 export default function RootLayout({
   children,
