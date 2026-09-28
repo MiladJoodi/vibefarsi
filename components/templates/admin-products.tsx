@@ -3,7 +3,7 @@
 import * as React from "react";
 import { LayoutGrid, List, MoreHorizontal, Pencil, Plus, Trash2 } from "lucide-react";
 import { NumberPop } from "@/components/animations/number-pop";
-import { ProductGrid, type Product } from "@/components/blocks/product-grid";
+import { ProductGrid, type Product } from "@/registry/blocks/product-grid";
 import { Alert } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -202,8 +202,8 @@ export function AdminProductsPage() {
 
       {view === "grid" ? (
         <ProductGrid
+          title="پرفروش‌ها"
           products={rows}
-          dense
           onAdd={(p) =>
             toast({
               title: "به سبد اضافه شد",
